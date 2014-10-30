@@ -4,6 +4,7 @@
 %
 % Document settings
 %
+\usepackage{graphicx}          % Allows embedding of most image files.
 \usepackage[a4paper]{geometry} % Geometry package for A4 paper.
 \geometry{verbose,tmargin=2cm,rmargin=2cm,lmargin=2cm} % Set margins.
 
@@ -33,20 +34,14 @@
 
 \section{Introduction}
 
-Matlab is both an application and a programming language. It was initially designed to
-teach linear algebra to university students. The fundamental building blocks are vectors
-and matrices. Over the years, Matlab has grown to become one of the most popular tools
-in science and engineering. The language is succint, and very practical for solving
-problems in scientific computing.
-
-I believe that the best way to learn Matlab is ``\textit{hands on}''. I have tried to
-design this tutorial to encourage experimentation. I assume no prior knowledge of
-Matlab, but you must already have it installed.
+I believe that the best way to learn Matlab is ``\textit{hands on}'', and I tried to
+design this practical that way. I assume no prior knowledge of Matlab, but you must
+already have it installed. Without further ado, let's start.
 
 
 \section{Whirlwind tour of MATLAB}
 
-\subsection{Start the program}
+\subsection{Matlab as a calculator}
 
 Locate the Matlab program and run it. After the program starts, you will be presented with
 a command shell where you enter Matlab instructions. In the rest of this tutorial,
@@ -57,9 +52,6 @@ any line that starts with ``\code{>>}'' denotes the Matlab command shell. For ex
 
    5
 \end{verbatim}
-
-
-\subsection{Matlab as a calculator}
 
 At the simplest level you can use Matlab as a scientific calculator. Enter the following
 code and see what it does.
@@ -74,7 +66,6 @@ code and see what it does.
 >> 4^(1/2)
 >> sqrt(2)
 >> sqrt(4)
->> sqrt(9)
 >> sqrt(25)
 >> pi
 >> cos(pi)
@@ -108,7 +99,7 @@ Enter the following code and see what it does:
 >> log10(10^189)
 \end{verbatim}
 
-The function \code{exp(n)} returns $e^n$ where $e = 2.7183...$ is the base of the
+The function \code{exp(x)} returns $e^x$ where $e = 2.7183...$ is the base of the
 natural logarithm. The function \texttt{log()} gives the natural logarithm
 while \code{log10()} gives the logarithm base 10.
 
@@ -127,10 +118,10 @@ Enter the following code and see what it does:
 >> sinh(i)
 \end{verbatim}
 
-The syntax ``\code{3i}, \code{5i}, etc'' lets you write imaginary numbers safely. Do not use
+The syntax ``\code{3i}, \code{5i}, etc'' lets you write imaginary numbers safely. Most
+operations (exponents, logs, trig) work on complex numbers. \textbf{Do not} use
 the variable ``\code{i}'' on its own because it can be overwritten (try \code{i = 7}) and
-your program will behave unpredictably. You can use Matlab to work with complex numbers,
-including complex exponentiation, logarithms and trigonometry.
+your program will behave unpredictably.
 
 \ruler
 
@@ -140,14 +131,8 @@ Enter the following code and see what it does:
 >> help log10
 \end{verbatim}
 
-Matlab comes with extensive help about all its functions. You are encouraged to use the
-help system to learn how functions work and possibly discover other functions that might
-be helpful in your work.
-
-\subsection{Machine precision}
-
-Try to determine whether Matlab stores numbers as single precision or double precision.
-You can use Wikipedia to learn about the differences between single and double precision.
+Matlab has an extensive help system. I encourage you to use it to learn how functions
+work and discover new functions.
 
 \subsection{Vectors and linear algebra}
 
@@ -462,21 +447,40 @@ run too fast.
 
 \ruler
 
-\subsection{Exercises}
+\section{Exercises}
 
 It is important that you do the exercises, as they will help sharpen your skills with
-loops, plotting and the Matlab help. The Bonus problem is different - it is meant to
-help you play and explore Matlab but is not directly relevant to this course.
+loops, plotting and the Matlab help. The last problem is mainly to help you play with
+MATLAB.
 
 \textbf{Exercise 1:} The Fibonacci sequence is a series of integers, starting with ``1,1'', where
 the next value is the sum of the previous two values. The first few terms of the Fibonacci
 sequence are: ``1,1,2,3,5,8,13,..''. Write a program that prints the first 50 values of the
 Fibonacci sequence.
 
-\textbf{Exercise 2:} Use the help function to figure out how to add axis labels and a title to
-a plot. Then make a plot of your favourite function with labels on both axes and a title.
+\textbf{Exercise 2:} Try to make a plot similar to the one on the next page. The plot compares the values produced by the \texttt{randn} function with the Gaussian distribution. You will need the following functions: \texttt{hist}, \texttt{randn}, \texttt{normpdf}, \texttt{title}, \texttt{xlabel}, \texttt{ylabel}, \texttt{legend}, \texttt{hold on} and \texttt{hold off}. Use the MATLAB help to figure out what these do.
 
-\textbf{Bonus problem:} Type in the following code and see what it does:
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/gaussian.png}
+\end{figure}
+
+
+% You will need the following: (1) \texttt{hist} (histograms); (2) \texttt{randn} (normally distributed random values); (3) \texttt{normpdf} (computes Gaussian/normal probabilities); (4) \texttt{title}, \texttt{xlabel}, \texttt{ylabel} and \texttt{legend} (label the plot); and (5)  \texttt{hold on} / \texttt{hold off}. Use the \texttt{help} function to guide you along.
+
+
+% 
+% x = [-5:0.1:5];
+% hist( randn(100000,1), [-5:0.2:5], 5 )
+% hold on
+% plot(x, normpdf(x), 'r-', 'linewidth',2 )
+% 
+% title("Gaussian Distribution")
+% xlabel("X Values")
+% ylabel("Frequency")
+% 
+
+\textbf{Exercise 3:} Type in the following code and see what it does:
 
 \begin{verbatim}
 [x,y] = meshgrid(-8:0.5:8);
